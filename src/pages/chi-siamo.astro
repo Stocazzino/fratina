@@ -4,36 +4,39 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout titolo="Chi Siamo">
     <section class="py-12 md:py-20 max-w-4xl mx-auto">
-        <h2 class="font-body font-normal text-sm uppercase tracking-[0.2em] text-brand-orange mb-12 text-center">
+        <h2 class="font-body font-bold text-lg md:text-xl uppercase tracking-[0.2em] text-brand-orange mb-12 text-center">
             La nostra storia
         </h2>
 
         <div class="space-y-10 text-center">
             <div class="space-y-8 text-lg md:text-xl font-body font-normal text-brand-yellow leading-relaxed">
                 <p>
-                    Siamo <span class="text-brand-orange font-bold">Alessandro e Luigina</span>, due coniugi da sempre attratti dalle cose appartenute al passato prossimo. 
+                    Siamo <span class="text-brand-orange font-bold">Alessandro e Luigina</span>, due coniugi da sempre attratti dalle cose appartenute al <span class="text-brand-orange">passato prossimo</span>. 
                 </p>
                 <p>
-                    La nostra estrema passione ci ha spinto a collezionare i pezzi più belli, secondo il nostro canone estetico, da qui siamo diventati collezionisti di articoli di modernariato.
+                    La nostra <span class="text-brand-orange">estrema passione</span> ci ha spinto a collezionare i pezzi più belli, secondo il nostro canone estetico, da qui siamo diventati collezionisti di articoli di <span class="text-brand-orange">modernariato</span>.
                 </p>
                 
                 <div class="py-4 flex justify-center">
-                    <div class="h-1 w-20 bg-brand-orange/30"></div>
+                    <div class="h-1.5 w-24 bg-brand-orange"></div>
                 </div>
 
                 <p>
-                    Da noi potrete trovare una vasta gamma di mobili, lampade, vasi ed oggettistica in genere che hanno fatto la storia dell'arredamento moderno.
+                    Da noi potrete trovare una vasta gamma di <span class="text-brand-orange">mobili, lampade, vasi</span> ed oggettistica in genere che hanno fatto la storia dell'arredamento moderno.
                 </p>
                 <p>
-                    Dai favolosi anni del boom economico, dove la fantasia, i colori vivaci e la gioia di vivere erano il comune denominatore in tutta la società, fino agli anni '80 con il suo peculiare edonismo esasperato.
+                    Dai favolosi anni del <span class="text-brand-orange">boom economico</span>, dove la fantasia, i colori vivaci e la gioia di vivere erano il comune denominatore in tutta la società, fino agli anni '80 con il suo peculiare edonismo esasperato.
                 </p>
             </div>
 
-            <div class="mt-16 border-4 border-brand-brown shadow-retro overflow-hidden bg-brand-yellow/10">
-                <div class="aspect-video flex items-center justify-center text-brand-orange/20 text-6xl">
-                    ✨
+            <div class="mt-16 grid grid-cols-2 gap-4">
+                <div class="border-3 border-brand-brown shadow-retro h-48 md:h-64 flex items-center justify-center bg-brand-yellow/10">
+                    <span class="text-4xl">📸</span>
                 </div>
+                <div class="border-3 border-brand-brown shadow-retro h-48 md:h-64 flex items-center justify-center bg-brand-yellow/10">
+                    <span class="text-4xl">✨</span>
                 </div>
+            </div>
         </div>
     </section>
 </Layout>
