@@ -1,15 +1,9 @@
 content:
-  - name: Pages
-    label: Website Pages
-    type: collection
-    path: src
-    fields:
-      - name: title
-        label: Page Title
-        type: string
-      - name: body
-        label: Content
-        type: rich-text
+  - name: home
+    label: homepage
+    type: file
+    path: index.html
+   
 
   - name: uploads
     label: Images & Assets
