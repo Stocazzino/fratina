@@ -1,0 +1,11 @@
+{
+  "nome": "Jesus Ballin",
+  "descrizione": "Pure la descrizione del prodotto ci sta e la puoi fare bella lunga e se la fai lunghissima succede che ci mette gli ellipses",
+  "prezzo": 145,
+  "imageUrls": [
+    "https://i.pinimg.com/originals/14/cf/29/14cf298b75154a3db61401bbe96d3b2e.gif",
+    "https://images.unsplash.com/photo-1534073828943-f801091bb18c?q=80&w=1000&auto=format&fit=crop"
+  ],
+  "categoria": "Illuminazione",
+  "stato": "Eccellente"
+}

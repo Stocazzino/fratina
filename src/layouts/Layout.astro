@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+const { titolo } = Astro.props;
+---
+
+<html lang="it">
+    <head>
+        <meta charset="utf-8" />
+        <title>{titolo} | Fratina</title>
+        <meta name="description" content="Descrizione del sito Fratina" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="keywords"
+            content="Frattina, sito, ecommerce, prodotti, catalogo"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" href="favicon.svg" />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header
+            class="sticky top-0 z-50 bg-brand-yellow border-b-4 border-brand-brown p-4 shadow-retro mb-10"
+        >
+            <nav class="max-w-6xl mx-auto flex justify-between items-center">
+                <a
+                    href="/"
+                    class="text-5xl font-display tracking-tighter hover:scale-105 transition-transform"
+                    >FRATINA</a
+                >
+                <div class="flex gap-6 font-bold uppercase text-sm">
+                    <a href="/" class="hover:underline decoration-4">Catalogo</a
+                    >
+                    <a
+                        href="mailto:info@fratina.it"
+                        class="bg-brand-brown text-white px-4 py-2 hover:bg-brand-orange transition-colors"
+                        >Contattaci</a
+                    >
+                </div>
+            </nav>
+        </header>
+
+        <main class="max-w-6xl mx-auto px-4 pb-20">
+            <slot />
+        </main>
+    </body>
+</html>

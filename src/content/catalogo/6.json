@@ -1,0 +1,11 @@
+{
+  "nome": "Test Product 6",
+  "descrizione": "This is the sixth test product. Its description is also intentionally lengthy to ensure proper testing of text truncation and ellipsis rendering.",
+  "prezzo": 99.99,
+  "imageUrls": [
+    "https://via.placeholder.com/150/2E8B57/FFFFFF?text=Product6_1",
+    "https://via.placeholder.com/150/DA70D6/000000?text=Product6_2"
+  ],
+  "categoria": "Furniture",
+  "stato": "Fair"
+}
