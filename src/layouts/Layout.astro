@@ -20,7 +20,7 @@ const baseUrl = import.meta.env.BASE_URL;
                     </span>
                 </a>
 
-                <div class="hidden md:flex items-center gap-8 font-bold text-brand-green">
+                <div class="hidden md:flex items-center gap-8 font-normal text-brand-green">
                     <a href={baseUrl} class="nav-link text-lg">Home</a>
                     <a href={`${baseUrl}#chi-siamo`} class="nav-link text-lg">Chi Siamo</a>
                     <a href={`${baseUrl}catalogo`} class="nav-link text-lg">Collezione</a>
@@ -29,7 +29,7 @@ const baseUrl = import.meta.env.BASE_URL;
                     
                     <a 
                         href={`${baseUrl}#contatti`} 
-                        class="bg-brand-brown text-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-brand-orange transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none"
+                        class="bg-brand-brown text-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-brand-orange transition-all shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] active:translate-y-0.5 active:shadow-none font-bold"
                     >
                         Contatti
                     </a>
@@ -48,9 +48,9 @@ const baseUrl = import.meta.env.BASE_URL;
         <footer class="bg-brand-brown text-brand-cream py-12 px-6">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 <h2 class="font-display text-3xl text-brand-yellow font-black italic">La Fratina</h2>
-                <div class="flex gap-6 font-bold text-sm uppercase">
-                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow">Instagram</a>
-                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow">Facebook</a>
+                <div class="flex gap-6 font-normal text-sm uppercase">
+                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow transition-colors">Instagram</a>
+                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow transition-colors">Facebook</a>
                 </div>
             </div>
         </footer>

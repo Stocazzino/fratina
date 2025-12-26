@@ -2,12 +2,10 @@
 import { getCollection } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 
-// 1. Logica Prodotti: Ora ne prendiamo solo 6 invece di 9
 const tuttiProdotti = await getCollection("catalogo");
 const prodottiMostrati = tuttiProdotti.slice(0, 6);
 const mostraLinkCatalogo = tuttiProdotti.length > 6;
 
-// 2. Logica Eventi
 const tuttiEventi = await getCollection("eventi");
 const eventi = tuttiEventi
     .sort((a, b) => a.data.data.getTime() - b.data.data.getTime())
@@ -25,16 +23,16 @@ const contatti = {
 ---
 
 <Layout titolo="Home">
-    <section id="home" class="py-12 md:py-20">
-        <div class="max-w-4xl">
-            <div class="space-y-6 text-xl md:text-2xl font-body font-bold text-brand-yellow leading-relaxed">
+    <section id="home" class="py-12 md:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+            <div class="space-y-6 text-lg md:text-xl font-body font-normal text-brand-yellow leading-relaxed">
                 <p>
                     Benvenuto nella mia collezione di Design Vintage degli anni '50, '60, '70 e '80.
                 </p>
                 <p>
                     Ogni pezzo è stato accuratamente selezionato, restaurato con cura e riportato al suo antico splendore.
                 </p>
-                <p class="opacity-90">
+                <p class="opacity-80">
                     Scopri oggetti unici che raccontano storie di un'epoca in cui il design era audace, i colori vivaci e l'artigianato impeccabile.
                 </p>
             </div>
