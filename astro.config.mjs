@@ -7,13 +7,15 @@ const [username, repoName] = GITHUB_REPOSITORY
   ? GITHUB_REPOSITORY.split("/")
   : ["", ""];
 
-// https://astro.build/config
+// Check if this is a User/Org site (root) or a Project site (subfolder)
+const isRootPages = repoName === `${username}.github.io`;
+
 export default defineConfig({
   site: GITHUB_REPOSITORY
     ? `https://${username}.github.io`
     : "http://localhost:4321",
-  // If in GitHub Actions, use /repo-name/ as the subpath
-  base: GITHUB_REPOSITORY ? `/${repoName}/` : "",
+
+  base: GITHUB_REPOSITORY && !isRootPages ? `/${repoName}/` : "/",
 
   vite: {
     plugins: [tailwindcss()],
