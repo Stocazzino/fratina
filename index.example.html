@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fratina Vintage | Restauro & Vendita</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
+    <link rel="manifest" href="public/site.webmanifest">
+    <style>
+        :root {
+            --burnt-orange: #FF6B35;
+            --deep-teal: #00A878;
+            --cream: #00A878;
+            --warm-black: #1A1A1A;
+            --mustard: #FFD23F;
+            --sage: #B8E986;
+            --coral: #FF5A5F;
+            --sky-blue: #4ECDC4;
+            --yellow: #fbc101;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: var(--cream);
+            color: var(--warm-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 168, 120, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulseGlow 15s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 2rem;
+            border-bottom: 4px solid var(--burnt-orange);
+            background: linear-gradient(180deg, rgba(251, 193, 1, 0.98) 0%, rgba(251, 193, 1, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: var(--deep-teal);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            color: var(--burnt-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--deep-teal);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--burnt-orange);
+            border-bottom-color: var(--burnt-orange);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--deep-teal);
+            cursor: pointer;
+        }
+
+        /* Spacer for fixed header */
+        .header-spacer {
+            height: 120px;
+        }
+
+        /* Intro Section */
+        .intro {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--yellow);
+        }
+
+        .intro strong {
+            color: var(--burnt-orange);
+            font-weight: 700;
+        }
+
+        /* Catalog Grid */
+        .catalog {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .catalog h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--yellow);
+            position: relative;
+        }
+
+        .catalog h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--burnt-orange);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .item {
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 rgba(0, 168, 120, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            animation: itemFadeIn 0.6s ease-out backwards;
+            animation-delay: calc(var(--item-index) * 0.1s);
+            border: 3px solid var(--warm-black);
+        }
+
+        @keyframes itemFadeIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 rgba(255, 107, 53, 0.4);
+        }
+
+        .item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, var(--deep-teal) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            mix-blend-mode: multiply;
+        }
+
+        .item:hover::before {
+            opacity: 0.1;
+        }
+
+        .item-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--coral) 0%, var(--mustard) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 15px,
+                    rgba(255, 255, 255, 0.1) 15px,
+                    rgba(255, 255, 255, 0.1) 30px);
+        }
+
+        /* Alternate gradient colors for variety */
+        .item:nth-child(2n) .item-image {
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--sage) 100%);
+        }
+
+        .item:nth-child(3n) .item-image {
+            background: linear-gradient(135deg, var(--mustard) 0%, var(--burnt-orange) 100%);
+        }
+
+        .item:nth-child(4n) .item-image {
+            background: linear-gradient(135deg, var(--sage) 0%, var(--deep-teal) 100%);
+        }
+
+        .item-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: var(--warm-black);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .item-year {
+            display: inline-block;
+            background: var(--burnt-orange);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 0;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            border: 2px solid var(--warm-black);
+            box-shadow: 3px 3px 0 var(--warm-black);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--yellow);
+            color: var(--warm-black);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Calendar Section */
+        .calendar-section {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .calendar-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+            position: relative;
+        }
+
+        .calendar-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--burnt-orange);
+        }
+
+        .calendar-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+            color: white;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 0;
+            padding: 2rem;
+            box-shadow: 6px 6px 0 rgba(255, 107, 53, 0.3);
+            border: 3px solid var(--warm-black);
+            border-left: 8px solid var(--burnt-orange);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: var(--mustard);
+            opacity: 0.15;
+            transform: translate(40%, -40%) rotate(45deg);
+        }
+
+        .event-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 rgba(0, 168, 120, 0.4);
+            border-left-color: var(--deep-teal);
+        }
+
+        .event-date {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-date-icon {
+            background: var(--burnt-orange);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            flex-shrink: 0;
+            border: 3px solid var(--warm-black);
+            box-shadow: 4px 4px 0 var(--warm-black);
+        }
+
+        .event-day {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .event-month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .event-datetime {
+            flex-grow: 1;
+        }
+
+        .event-weekday {
+            font-size: 0.85rem;
+            color: var(--burnt-orange);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+        }
+
+        .event-time {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.2rem;
+        }
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--deep-teal);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .event-location {
+            font-size: 0.95rem;
+            color: var(--warm-black);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .event-location::before {
+            content: '📍';
+            font-size: 1.2rem;
+        }
+
+        .event-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #666;
+            border-top: 1px solid rgba(44, 36, 22, 0.1);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .contact-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--deep-teal);
+        }
+
+        .contact p {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            color: var(--warm-black);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            background: rgba(0, 168, 120, 0.15);
+            padding: 2rem;
+            border-radius: 0;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 3px solid rgba(0, 168, 120, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-method:hover {
+            background: rgba(0, 168, 120, 0.25);
+            border-color: var(--deep-teal);
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0 rgba(0, 168, 120, 0.4);
+        }
+
+        .contact-method-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .contact-method-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--deep-teal);
+        }
+
+        .contact-method-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .contact-method a {
+            color: var(--warm-black);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-method a:hover {
+            color: var(--deep-teal);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--warm-black);
+            color: var(--cream);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                justify-content: space-between;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 0.65rem;
+                letter-spacing: 0.15em;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(251, 193, 1, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                gap: 0;
+                border-bottom: 3px solid var(--burnt-orange);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(0, 168, 120, 0.2);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
+
+            .header-spacer {
+                height: 80px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .catalog h2,
+            .contact h2,
+            .calendar-section h2 {
+                font-size: 2rem;
+            }
+
+            .contact-methods,
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation for images */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>La Fratina Vintage</h1>
+                <p class="tagline">Alessandro & Luigina</p>
+            </div>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <nav id="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#catalogo" class="nav-link">Catalogo</a>
+                <a href="#calendario" class="nav-link">Calendario</a>
+                <a href="#contatti" class="nav-link">Contatti</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="header-spacer"></div>
+
+    <section id="home" class="intro">
+        <p>
+            Benvenuto nella mia collezione di <strong>design vintage degli anni '60, '70 e '80</strong>.
+            Ogni pezzo è stato accuratamente selezionato, restaurato con cura e riportato al suo antico splendore.
+        </p>
+        <p>
+            Scopri oggetti unici che raccontano storie di un'epoca in cui il design era audace,
+            i colori vivaci e l'artigianato impeccabile.
+        </p>
+    </section>
+
+    <section id="catalogo" class="catalog">
+        <h2>Collezione Attuale</h2>
+
+        <div class="grid">
+            <!-- Item 1 -->
+            <div class="item" style="--item-index: 0">
+                <div class="item-image">🪑</div>
+                <div class="item-content">
+                    <h3 class="item-title">Poltrona Scandinava</h3>
+                    <p class="item-description">
+                        Elegante poltrona in teak con seduta in tessuto originale arancione.
+                        Completamente restaurata, struttura solida.
+                    </p>
+                    <span class="item-year">Anni '70</span>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="item" style="--item-index: 1">
+                <div class="item-image">💡</div>
+                <div class="item-content">
+                    <h3 class="item-title">Lampada Space Age</h3>
+                    <p class="item-description">
+                        Iconica lampada da tavolo in plastica bianca. Design futuristico tipico
+                        dell'era spaziale. Funzionante, cablaggio nuovo.
+                    </p>
+                    <span class="item-year">Anni '60</span>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="item" style="--item-index: 2">
+                <div class="item-image">📻</div>
+                <div class="item-content">
+                    <h3 class="item-title">Radio Vintage</h3>
+                    <p class="item-description">
+                        Radio portatile con cassa in legno e dettagli cromati.
+                        Restaurata elettronicamente, suono cristallino.
+                    </p>
+                    <span class="item-year">Anni '70</span>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="item" style="--item-index: 3">
+                <div class="item-image">🎨</div>
+                <div class="item-content">
+                    <h3 class="item-title">Vaso Ceramica</h3>
+                    <p class="item-description">
+                        Grande vaso in ceramica smaltata con pattern geometrici multicolore.
+                        Pezzo unico firmato da ceramista italiano.
+                    </p>
+                    <span class="item-year">Anni '60</span>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="item" style="--item-index: 4">
+                <div class="item-image">🕰️</div>
+                <div class="item-content">
+                    <h3 class="item-title">Orologio a Parete</h3>
+                    <p class="item-description">
+                        Orologio da parete starburst in ottone dorato. Design iconico mid-century,
+                        movimento al quarzo sostituito.
+                    </p>
+                    <span class="item-year">Anni '60</span>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="item" style="--item-index: 5">
+                <div class="item-image">🖼️</div>
+                <div class="item-content">
+                    <h3 class="item-title">Specchio Barbier</h3>
+                    <p class="item-description">
+                        Specchio da parete con cornice in bachelite marrone.
+                        Forma organica tipica del design anni '70.
+                    </p>
+                    <span class="item-year">Anni '70</span>
+                </div>
+            </div>
+
+            <!-- Item 7 -->
+            <div class="item" style="--item-index: 6">
+                <div class="item-image">🛋️</div>
+                <div class="item-content">
+                    <h3 class="item-title">Divano Modular</h3>
+                    <p class="item-description">
+                        Sistema componibile in velluto azzurro con struttura in legno.
+                        Imbottitura rifatta, tessuto originale conservato.
+                    </p>
+                    <span class="item-year">Anni '80</span>
+                </div>
+            </div>
+
+            <!-- Item 8 -->
+            <div class="item" style="--item-index: 7">
+                <div class="item-image">☕</div>
+                <div class="item-content">
+                    <h3 class="item-title">Set Caffè Vintage</h3>
+                    <p class="item-description">
+                        Servizio da caffè in porcellana con decorazioni geometriche arancio e marrone.
+                        6 tazze, piattini e caffettiera.
+                    </p>
+                    <span class="item-year">Anni '70</span>
+                </div>
+            </div>
+
+            <!-- Item 9 -->
+            <div class="item" style="--item-index: 8">
+                <div class="item-image">📺</div>
+                <div class="item-content">
+                    <h3 class="item-title">TV Vintage</h3>
+                    <p class="item-description">
+                        Televisore portatile in plastica arancione. Non funzionante ma perfetto
+                        come oggetto decorativo o da convertire.
+                    </p>
+                    <span class="item-year">Anni '70</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calendario" class="calendar-section">
+        <h2>Prossimi Eventi</h2>
+        <p class="calendar-intro">
+            Vieni a trovarci ai mercatini e fiere vintage. Qui puoi vedere e toccare con mano
+            i nostri pezzi, scoprire nuovi arrivi e fare due chiacchiere con noi!
+        </p>
+
+        <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="event-date-icon">
+                        <div class="event-day">15</div>
+                        <div class="event-month">Gen</div>
+                    </div>
+                    <div class="event-datetime">
+                        <div class="event-weekday">Domenica</div>
+                        <div class="event-time">9:00 - 19:00</div>
+                    </div>
+                </div>
+                <h3 class="event-title">Mercato Vintage Lucca</h3>
+                <div class="event-location">Piazza San Michele, Lucca</div>
+                <p class="event-description">
+                    Grande mercatino mensile nel cuore del centro storico.
+                    Porteremo una selezione speciale di lampade e ceramiche anni '70.
+                </p>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="event-date-icon">
+                        <div class="event-day">28</div>
+                        <div class="event-month">Gen</div>
+                    </div>
+                    <div class="event-datetime">
+                        <div class="event-weekday">Sabato</div>
+                        <div class="event-time">10:00 - 20:00</div>
+                    </div>
+                </div>
+                <h3 class="event-title">Fiera Antiquariato Pisa</h3>
+                <div class="event-location">Piazza dei Miracoli, Pisa</div>
+                <p class="event-description">
+                    Importante fiera mensile dell'antiquariato. Stand con mobili restaurati
+                    e oggetti di design italiano anni '60-'80.
+                </p>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="event-date-icon">
+                        <div class="event-day">8</div>
+                        <div class="event-month">Feb</div>
+                    </div>
+                    <div class="event-datetime">
+                        <div class="event-weekday">Sabato</div>
+                        <div class="event-time">8:00 - 18:00</div>
+                    </div>
+                </div>
+                <h3 class="event-title">Mercatino Viareggio</h3>
+                <div class="event-location">Passeggiata Margherita, Viareggio</div>
+                <p class="event-description">
+                    Mercatino sul lungomare con vista mare. Perfetto per una giornata
+                    all'aria aperta tra vintage e relax.
+                </p>
+            </div>
+
+            <!-- Event 4 -->
+            <div class="event-card">
+                <div class="event-date">
+                    <div class="event-date-icon">
+                        <div class="event-day">22</div>
+                        <div class="event-month">Feb</div>
+                    </div>
+                    <div class="event-datetime">
+                        <div class="event-weekday">Sabato</div>
+                        <div class="event-time">9:00 - 19:00</div>
+                    </div>
+                </div>
+                <h3 class="event-title">Vintage Market Firenze</h3>
+                <div class="event-location">Piazza Santo Spirito, Firenze</div>
+                <p class="event-description">
+                    Il mercato vintage più cool di Firenze! Ogni mese attira appassionati
+                    da tutta la Toscana. Non mancate!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="contact">
+        <div class="contact-content">
+            <h2>Interessato?</h2>
+            <p>
+                Ogni pezzo è disponibile per l'acquisto. Contattami per ricevere foto dettagliate,
+                informazioni sui prezzi e condizioni. Posso anche cercare pezzi specifici su tua richiesta.
+            </p>
+
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <div class="contact-method-icon">📧</div>
+                    <div class="contact-method-label">Email</div>
+                    <div class="contact-method-value">
+                        <a href="/cdn-cgi/l/email-protection#710504105c141c10181d311409101c011d145f121e1c"><span
+                                class="__cf_email__"
+                                data-cfemail="e7939286ca828a868e8ba7829f868a978b82c984888a">[email&#160;protected]</span></a>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-method-icon">📱</div>
+                    <div class="contact-method-label">Telefono</div>
+                    <div class="contact-method-value">
+                        <a href="tel:+393331234567">+39 333 123 4567</a>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-method-icon">💬</div>
+                    <div class="contact-method-label">WhatsApp</div>
+                    <div class="contact-method-value">
+                        <a href="https://wa.me/393331234567" target="_blank">Chatta su WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-method-icon">📷</div>
+                    <div class="contact-method-label">Instagram</div>
+                    <div class="contact-method-value">
+                        <a href="https://instagram.com/tuoaccount" target="_blank">@tuoaccount</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 La Fratina Vintage | Alessandro & Luigina | Tutti i diritti riservati</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+        const header = document.getElementById('header');
+        const headerHeight = header.offsetHeight;
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                // Close mobile menu if open
+                nav.classList.remove('active');
+                menuToggle.textContent = '☰';
+
+                // Smooth scroll with offset for fixed header
+                const offsetTop = targetSection.offsetTop - headerHeight - 20;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+
+                // Update active link
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.pageYOffset + headerHeight + 100;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    })
+                }
+            })
+        })
