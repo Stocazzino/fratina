@@ -1,0 +1,14 @@
+{
+  "nome": "Baule da Viaggio Grand Tour",
+  "descrizione": "Grande baule rinforzato in legno e ferro. Usato per lunghi viaggi in transatlantico.",
+  "prezzo": 350,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?q=80&w=1000"
+  ],
+  "categoria": "Arredamento",
+  "stato": "Vissuto",
+  "dimensioni": "100x50x50 cm",
+  "anno": 1910,
+  "disponibile": true
+}

@@ -1,0 +1,91 @@
+---
+import "@/styles/global.css";
+const { titolo } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<html lang="it">
+    <head>
+        <meta charset="utf-8" />
+        <title>{titolo} | Fratina Vintage Restauro & Vendita</title>
+        <meta name="description" content="Descrizione del sito Fratina" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Frattina, sito, prodotti, catalogo" />
+        <meta name="robots" content="index, follow" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="favicon-16x16.png"
+        />
+        <link rel="manifest" href="site.webmanifest" />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header
+            class="sticky top-0 z-50 bg-brand-yellow border-b-4 border-brand-brown p-4 shadow-retro mb-10"
+        >
+            <nav class="max-w-7xl mx-auto flex justify-between items-center">
+                <a
+                    href={baseUrl}
+                    class="text-5xl font-display tracking-tighter hover:scale-105 transition-transform"
+                >
+                    FRATINA
+                </a>
+                <div
+                    class="flex items-center gap-6 font-bold uppercase text-sm"
+                >
+                    <a href={`${baseUrl}`} class="hover:underline decoration-4">
+                        Home
+                    </a>
+                    <a
+                        href={`${baseUrl}catalogo`}
+                        class="hover:underline decoration-4"
+                    >
+                        Catalogo
+                    </a>
+                    <a
+                        href={`${baseUrl}#eventi`}
+                        class="hover:underline decoration-4"
+                    >
+                        Eventi
+                    </a>
+                    <a
+                        href={`${baseUrl}#contatti`}
+                        class="bg-brand-brown text-white px-4 py-2 hover:bg-brand-orange transition-colors"
+                    >
+                        Contattaci
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 pb-20">
+            <slot />
+        </main>
+
+        <footer class="z-50 bg-brand-yellow p-4">
+            <nav class="max-w-7xl mx-auto flex justify-between items-center">
+                <p>
+                    &copy; 2025 La Fratina Vintage | Alessandro & Luigina |
+                    Tutti i diritti riservati
+                </p>
+            </nav>
+        </footer>
+    </body>
+</html>

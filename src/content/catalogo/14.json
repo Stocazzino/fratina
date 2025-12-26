@@ -1,0 +1,14 @@
+{
+  "nome": "Vaso Murano Sommerso",
+  "descrizione": "Vaso in vetro di Murano tecnica sommerso, colori blu e ambra. Certificato originale.",
+  "prezzo": 280,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=1000"
+  ],
+  "categoria": "Arte",
+  "stato": "Perfetto",
+  "dimensioni": "25 cm",
+  "anno": 1970,
+  "disponibile": true
+}

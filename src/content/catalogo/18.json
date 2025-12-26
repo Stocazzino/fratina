@@ -1,0 +1,14 @@
+{
+  "nome": "Zaino Militare in Tela",
+  "descrizione": "Zaino robusto in tela di canapa e fibbie in metallo. Ideale per escursioni in stile vintage.",
+  "prezzo": 40,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=1000"
+  ],
+  "categoria": "Accessori",
+  "stato": "Usato",
+  "dimensioni": "45x35 cm",
+  "anno": 1980,
+  "disponibile": true
+}

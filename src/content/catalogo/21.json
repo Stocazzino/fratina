@@ -1,0 +1,14 @@
+{
+  "nome": "Macinacaffè a Manovella",
+  "descrizione": "Struttura in legno e meccanismo in ferro battuto. Funziona ancora perfettamente.",
+  "prezzo": 30,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=1000"
+  ],
+  "categoria": "Cucina",
+  "stato": "Buono",
+  "dimensioni": "12x12x20 cm",
+  "anno": 1930,
+  "disponibile": true
+}

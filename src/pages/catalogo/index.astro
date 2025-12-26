@@ -1,0 +1,189 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+
+const prodotti = await getCollection("catalogo");
+const baseUrl = import.meta.env.BASE_URL;
+
+// Estraiamo categorie uniche per i filtri
+const categorie = [...new Set(prodotti.map((p) => p.data.categoria))].sort();
+---
+
+<Layout titolo="Catalogo Completo">
+    <section class="py-12">
+        <h1 class="text-6xl font-display mb-4">Il Catalogo</h1>
+        <p class="text-xl max-w-2xl">
+            Esplora la nostra intera collezione di pezzi unici. Filtra per
+            categoria o cerca un oggetto specifico.
+        </p>
+    </section>
+
+    <section class="sticky py-8 top-16 z-10 mb-10">
+        <div class="flex flex-col md:flex-row gap-4">
+            <div class="grow">
+                <input
+                    type="text"
+                    id="searchBar"
+                    placeholder="Cerca un mobile, una lampada..."
+                    class="w-full p-4 border-4 border-brand-brown shadow-retro focus:outline-none bg-white focus:ring-4 focus:ring-brand-yellow font-medium"
+                />
+            </div>
+
+            <div class="min-w-50">
+                <select
+                    id="categoryFilter"
+                    class="w-full p-5 border-4 border-brand-brown shadow-retro focus:outline-none bg-white font-bold uppercase text-sm tracking-wider"
+                >
+                    <option value="all">Tutte le Categorie</option>
+                    {categorie.map((cat) => <option value={cat}>{cat}</option>)}
+                </select>
+            </div>
+
+            <div
+                class="flex items-center gap-2 px-4 border-4 border-brand-brown bg-white shadow-retro"
+            >
+                <input
+                    type="checkbox"
+                    id="availableOnly"
+                    checked
+                    class="w-5 h-5 accent-brand-orange"
+                />
+                <label
+                    for="availableOnly"
+                    class="font-bold uppercase text-xs whitespace-nowrap"
+                    >Solo disponibili</label
+                >
+            </div>
+        </div>
+    </section>
+
+    <div
+        id="productGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20"
+    >
+        {
+            prodotti.map((p) => (
+                <div
+                    class="product-card group"
+                    data-nome={p.data.nome.toLowerCase()}
+                    data-categoria={p.data.categoria}
+                    data-disponibile={p.data.disponibile.toString()}
+                >
+                    <a
+                        href={`${baseUrl}catalogo/${p.id}`}
+                        class="block bg-white border-4 border-brand-brown shadow-retro hover:shadow-retro-hover transition-all overflow-hidden h-full"
+                    >
+                        <div class="aspect-square border-b-4 border-brand-brown overflow-hidden relative">
+                            <img
+                                src={p.data.imageUrls[0]}
+                                alt={p.data.nome}
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            {!p.data.disponibile && (
+                                <div class="absolute inset-0 bg-white/60 flex items-center justify-center">
+                                    <span class="bg-brand-brown text-white px-4 py-2 font-display text-2xl rotate-[-5deg]">
+                                        VENDUTO
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                        <div class="p-6 bg-white">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-2xl font-display leading-tight">
+                                    {p.data.nome}
+                                </h3>
+                            </div>
+                            <p class="text-xs font-bold text-brand-green uppercase tracking-widest mb-4">
+                                {p.data.categoria}
+                            </p>
+
+                            <div class="flex justify-between items-center border-t-2 border-brand-brown pt-4">
+                                {p.data.anno && (
+                                    <span class="font-mono text-sm bg-brand-yellow border-2 border-brand-brown px-2 py-1">
+                                        {p.data.anno}
+                                    </span>
+                                )}
+                                <span class="text-xl font-bold text-brand-orange">
+                                    {p.data.prezzo} {p.data.valuta}
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            ))
+        }
+    </div>
+
+    <div id="noResults" class="hidden text-center py-20">
+        <p class="text-4xl font-display opacity-30">
+            Nessun oggetto trovato...
+        </p>
+        <button
+            id="resetFilters"
+            class="mt-4 text-brand-orange underline font-bold"
+            >Resetta i filtri</button
+        >
+    </div>
+</Layout>
+
+<script>
+    // Logica di filtraggio client-side
+    const searchBar = document.getElementById("searchBar") as HTMLInputElement;
+    const categoryFilter = document.getElementById(
+        "categoryFilter",
+    ) as HTMLSelectElement;
+    const availableOnly = document.getElementById(
+        "availableOnly",
+    ) as HTMLInputElement;
+    availableOnly.defaultChecked = true;
+    availableOnly.checked = true;
+    const cards = document.querySelectorAll(".product-card");
+    const noResults = document.getElementById("noResults");
+    const resetBtn = document.getElementById("resetFilters");
+
+    function filterProducts() {
+        const searchTerm = searchBar.value.toLowerCase();
+        const selectedCat = categoryFilter.value;
+        const onlyAvailable = availableOnly.checked;
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+            const element = card as HTMLElement;
+            const nome = element.dataset.nome || "";
+            const cat = element.dataset.categoria || "";
+            const disp = element.dataset.disponibile === "true";
+
+            const matchesSearch = nome.includes(searchTerm);
+            const matchesCat = selectedCat === "all" || cat === selectedCat;
+            const matchesDisp = !onlyAvailable || disp === true;
+
+            if (matchesSearch && matchesCat && matchesDisp) {
+                element.style.display = "block";
+                visibleCount++;
+            } else {
+                element.style.display = "none";
+            }
+        });
+
+        // Mostra messaggio se non ci sono risultati
+        if (visibleCount === 0) {
+            noResults?.classList.remove("hidden");
+        } else {
+            noResults?.classList.add("hidden");
+        }
+    }
+
+    // Event Listeners
+    searchBar?.addEventListener("input", filterProducts);
+    categoryFilter?.addEventListener("change", filterProducts);
+    availableOnly?.addEventListener("change", filterProducts);
+
+    resetBtn?.addEventListener("click", () => {
+        searchBar.value = "";
+        categoryFilter.value = "all";
+        availableOnly.checked = false;
+        filterProducts();
+    });
+
+    filterProducts();
+</script>

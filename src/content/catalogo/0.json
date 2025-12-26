@@ -1,0 +1,14 @@
+{
+  "nome": "Macchina Fotografica a Pellicola 35mm",
+  "descrizione": "Una splendida fotocamera vintage degli anni '70, perfettamente conservata. Ideale per amatori della fotografia analogica.",
+  "prezzo": 125.5,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000"
+  ],
+  "categoria": "Fotografia",
+  "stato": "Ottimo",
+  "dimensioni": "15x10x8 cm",
+  "anno": 1974,
+  "disponibile": true
+}

@@ -1,0 +1,155 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const prodotti = await getCollection("catalogo");
+    return prodotti.map((p) => ({
+        params: { id: p.id },
+        props: { p },
+    }));
+}
+
+const { p } = Astro.props;
+const hasMultipleImages = p.data.imageUrls.length > 1;
+---
+
+<Layout titolo={p.data.nome}>
+    <div class="grid lg:grid-cols-2 gap-16 items-start relative">
+        <div class="lg:sticky lg:top-32">
+            <div
+                class="relative border-4 border-brand-brown shadow-retro-hover bg-brand-cream group"
+            >
+                <div
+                    id="carousel-container"
+                    class="flex overflow-x-scroll snap-x snap-mandatory scroll-smooth no-scrollbar"
+                >
+                    {
+                        p.data.imageUrls.map((url, index) => (
+                            // Ogni immagine occupa il 100% della larghezza e si allinea al centro
+                            <img
+                                src={url}
+                                alt={`${p.data.nome} vista ${index + 1}`}
+                                class="w-full shrink-0 snap-center object-cover aspect-square"
+                            />
+                        ))
+                    }
+                </div>
+
+                {
+                    hasMultipleImages && (
+                        <>
+                            <button
+                                id="prev-btn"
+                                class="absolute left-4 top-1/2 -translate-y-1/2 bg-brand-brown text-brand-yellow border-2 border-brand-yellow p-3 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 hover:bg-brand-orange"
+                                aria-label="Immagine precedente"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="4"
+                                    stroke="currentColor"
+                                    class="w-6 h-6"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15.75 19.5L8.25 12l7.5-7.5"
+                                    />
+                                </svg>
+                            </button>
+                            <button
+                                id="next-btn"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 bg-brand-brown text-brand-yellow border-2 border-brand-yellow p-3 opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-30 hover:bg-brand-orange"
+                                aria-label="Immagine successiva"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="4"
+                                    stroke="currentColor"
+                                    class="w-6 h-6"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                                    />
+                                </svg>
+                            </button>
+                        </>
+                    )
+                }
+                <div
+                    class="absolute bottom-4 right-4 bg-brand-brown text-brand-yellow px-3 py-1 text-xs font-bold border-2 border-brand-yellow"
+                >
+                    {p.data.imageUrls.length} FOTO
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div>
+                <h1 class="text-6xl mb-2">{p.data.nome}</h1>
+                <p class="text-4xl text-brand-orange font-bold">
+                    {p.data.prezzo.toFixed(2)}{p.data.valuta}
+                </p>
+            </div>
+
+            <div class="p-8 bg-white border-4 border-brand-brown relative">
+                <h3
+                    class="uppercase font-bold text-xs tracking-[0.2em] mb-4 opacity-50"
+                >
+                    Descrizione dell'oggetto
+                </h3>
+                <p class="text-xl leading-relaxed">{p.data.descrizione}</p>
+            </div>
+
+            <table
+                class="w-full border-collapse border-4 border-brand-brown bg-brand-cream text-left"
+            >
+                <tr class="border-b-2 border-brand-brown"
+                    ><th class="p-4 font-bold uppercase text-xs">Stato</th><td
+                        class="p-4">{p.data.stato}</td
+                    ></tr
+                >
+                <tr class="border-b-2 border-brand-brown"
+                    ><th class="p-4 font-bold uppercase text-xs">Anno</th><td
+                        class="p-4">{p.data.anno || "N/D"}</td
+                    ></tr
+                >
+                <tr
+                    ><th class="p-4 font-bold uppercase text-xs">Dimensioni</th
+                    ><td class="p-4">{p.data.dimensioni || "N/D"}</td></tr
+                >
+            </table>
+
+            <a
+                href={`mailto:ciao@fratina.it?subject=Interesse per ${p.data.nome}`}
+                class="block w-full py-6 bg-brand-green text-white text-center text-2xl font-bold border-4 border-brand-brown hover:translate-y-1 hover:shadow-none transition-all shadow-retro"
+            >
+                RICHIEDI INFORMAZIONI
+            </a>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const container = document.getElementById("carousel-container");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    if (container && prevBtn && nextBtn) {
+        const scrollAmount = container.clientWidth;
+
+        nextBtn.addEventListener("click", () => {
+            container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+
+        prevBtn.addEventListener("click", () => {
+            container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        });
+    }
+</script>

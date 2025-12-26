@@ -1,0 +1,14 @@
+{
+  "nome": "Specchio Sole in Legno Dorato",
+  "descrizione": "Specchio decorativo a raggiera, tipico dello stile Hollywood Regency anni '50.",
+  "prezzo": 145,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=1000"
+  ],
+  "categoria": "Arredamento",
+  "stato": "Ottimo",
+  "dimensioni": "60 cm diametro",
+  "anno": 1958,
+  "disponibile": true
+}

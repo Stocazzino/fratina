@@ -1,0 +1,14 @@
+{
+  "nome": "Ventilatore Marelli in Metallo",
+  "descrizione": "Pesante ventilatore da tavolo con pale in alluminio. Un pezzo di ingegneria italiana.",
+  "prezzo": 130,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1000"
+  ],
+  "categoria": "Elettronica",
+  "stato": "Funzionante",
+  "dimensioni": "35 cm altezza",
+  "anno": 1948,
+  "disponibile": true
+}

@@ -1,0 +1,14 @@
+{
+  "nome": "Occhiali da Sole Cat-Eye",
+  "descrizione": "Montatura originale anni '50 in celluloide tartarugata. Lenti nuove protettive.",
+  "prezzo": 120,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1511499767390-90342f56771f?q=80&w=1000"
+  ],
+  "categoria": "Moda",
+  "stato": "Ottimo",
+  "dimensioni": "Taglia M",
+  "anno": 1954,
+  "disponibile": true
+}

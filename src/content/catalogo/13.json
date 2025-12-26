@@ -1,0 +1,14 @@
+{
+  "nome": "Binocolo Militare Tedesco",
+  "descrizione": "Binocolo professionale con lenti trattate e custodia originale in cuoio.",
+  "prezzo": 210,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1590595906931-81f04f0ccebb?q=80&w=1000"
+  ],
+  "categoria": "Ottica",
+  "stato": "Ottimo",
+  "dimensioni": "18x15 cm",
+  "anno": 1944,
+  "disponibile": true
+}

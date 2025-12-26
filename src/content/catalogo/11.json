@@ -1,0 +1,14 @@
+{
+  "nome": "Valigia in Cuoio Artigianale",
+  "descrizione": "Valigia rigida da viaggio in vero cuoio marrone. Interno foderato in tessuto scozzese.",
+  "prezzo": 90,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1000"
+  ],
+  "categoria": "Accessori",
+  "stato": "Vissuto",
+  "dimensioni": "60x40x18 cm",
+  "anno": 1950,
+  "disponibile": true
+}

@@ -1,0 +1,14 @@
+{
+  "nome": "Sifone per Seltz in Vetro",
+  "descrizione": "Antico sifone da bar in vetro azzurrato con rete metallica protettiva.",
+  "prezzo": 35,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1510137600163-2729bc6959a6?q=80&w=1000"
+  ],
+  "categoria": "Cucina",
+  "stato": "Buono",
+  "dimensioni": "30 cm",
+  "anno": 1935,
+  "disponibile": true
+}

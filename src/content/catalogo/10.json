@@ -1,0 +1,14 @@
+{
+  "nome": "Mappamondo Luminoso Anni '60",
+  "descrizione": "Mappamondo con base in legno e arco in metallo. Funziona come lampada d'atmosfera.",
+  "prezzo": 85,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=1000"
+  ],
+  "categoria": "Arredamento",
+  "stato": "Buono",
+  "dimensioni": "30 cm diametro",
+  "anno": 1962,
+  "disponibile": true
+}

@@ -1,0 +1,14 @@
+{
+  "nome": "Cuffie Stereo Hi-Fi Anni '70",
+  "descrizione": "Cuffie a padiglione chiuso con cavo a spirale. Suono caldo e design massiccio.",
+  "prezzo": 65,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000"
+  ],
+  "categoria": "Musica",
+  "stato": "Buono",
+  "dimensioni": "Standard",
+  "anno": 1976,
+  "disponibile": true
+}

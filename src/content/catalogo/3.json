@@ -1,0 +1,14 @@
+{
+  "nome": "Poltrona Mid-Century Moderna",
+  "descrizione": "Elegante poltrona in velluto verde bosco con gambe in legno di faggio. Design ispirato ai maestri degli anni '60.",
+  "prezzo": 340,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=1000"
+  ],
+  "categoria": "Arredamento",
+  "stato": "Eccellente",
+  "dimensioni": "70x85x75 cm",
+  "anno": 1968,
+  "disponibile": false
+}

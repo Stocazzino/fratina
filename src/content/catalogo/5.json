@@ -1,0 +1,14 @@
+{
+  "nome": "Lampada Ministeriale",
+  "descrizione": "Classica lampada da scrivania con base in ottone e paralume in vetro verde. Un classico degli uffici legali.",
+  "prezzo": 75,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1534073828943-f801091bb18c?q=80&w=1000"
+  ],
+  "categoria": "Illuminazione",
+  "stato": "Nuovo (Fondo di magazzino)",
+  "dimensioni": "40 cm altezza",
+  "anno": 1990,
+  "disponibile": true
+}

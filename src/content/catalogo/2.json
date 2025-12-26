@@ -1,0 +1,14 @@
+{
+  "nome": "Radio a Valvole in Bachelite",
+  "descrizione": "Rara radio d'epoca con scocca in bachelite marrone. Atmosfera autentica degli anni '50.",
+  "prezzo": 95,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1558941572-ec88028976b9?q=80&w=1000"
+  ],
+  "categoria": "Elettronica",
+  "stato": "Usato",
+  "dimensioni": "25x15x12 cm",
+  "anno": 1955,
+  "disponibile": true
+}

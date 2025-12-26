@@ -1,0 +1,14 @@
+{
+  "nome": "Lotto di 10 Vinili Jazz",
+  "descrizione": "Selezione curata di LP jazz, include Miles Davis e John Coltrane. Condizioni VG+.",
+  "prezzo": 200,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1603048588665-791ca8aea617?q=80&w=1000"
+  ],
+  "categoria": "Musica",
+  "stato": "Ottimo",
+  "dimensioni": "12 pollici",
+  "anno": 1960,
+  "disponibile": true
+}

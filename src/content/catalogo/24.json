@@ -1,0 +1,14 @@
+{
+  "nome": "Insegna Neon Bar",
+  "descrizione": "Vera insegna al neon degli anni '80. Colore rosa e blu, perfetta per un garage o taverna.",
+  "prezzo": 220,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1563245159-f793f19d8c37?q=80&w=1000"
+  ],
+  "categoria": "Illuminazione",
+  "stato": "Ottimo",
+  "dimensioni": "60x30 cm",
+  "anno": 1984,
+  "disponibile": true
+}

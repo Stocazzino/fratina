@@ -1,0 +1,14 @@
+{
+  "nome": "Telefono a Disco Bigrigio",
+  "descrizione": "Il telefono standard SIP degli anni '70 e '80. Grigio classico, un oggetto di puro modernariato.",
+  "prezzo": 45,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1520923642038-b4259ace9439?q=80&w=1000"
+  ],
+  "categoria": "Elettronica",
+  "stato": "Ottimo",
+  "dimensioni": "20x22 cm",
+  "anno": 1978,
+  "disponibile": true
+}

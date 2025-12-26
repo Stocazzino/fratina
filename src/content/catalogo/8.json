@@ -1,0 +1,14 @@
+{
+  "nome": "Orologio Omega Seamaster Vintage",
+  "descrizione": "Orologio svizzero automatico, cassa in acciaio. Un investimento di classe che non passa mai di moda.",
+  "prezzo": 1200,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?q=80&w=1000"
+  ],
+  "categoria": "Orologi",
+  "stato": "Revisionato",
+  "dimensioni": "36 mm",
+  "anno": 1965,
+  "disponibile": true
+}

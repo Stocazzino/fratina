@@ -1,0 +1,14 @@
+{
+  "nome": "Bilancia da Farmacia in Ottone",
+  "descrizione": "Antica bilancia di precisione con pesetti inclusi. Ottone lucido e base in marmo.",
+  "prezzo": 150,
+  "valuta": "€",
+  "imageUrls": [
+    "https://images.unsplash.com/photo-1565538410887-b678f144bc36?q=80&w=1000"
+  ],
+  "categoria": "Collezionismo",
+  "stato": "Ottimo",
+  "dimensioni": "30x40 cm",
+  "anno": 1920,
+  "disponibile": true
+}

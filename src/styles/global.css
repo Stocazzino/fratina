@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "tailwindcss";
+
+@theme {
+    --color-brand-orange: #e67e22;
+    --color-brand-brown: #3d2b1f;
+    --color-brand-cream: #fdf6e3;
+    --color-brand-yellow: #f4a127;
+    --color-brand-green: #2d5a27;
+
+    --font-display: "DM Serif Display", serif;
+    --font-body: "Space Grotesk", sans-serif;
+
+    --shadow-retro: 8px 8px 0px 0px var(--color-brand-brown);
+    --shadow-retro-hover: 12px 12px 0px 0px var(--color-brand-orange);
+}
+
+@layer base {
+    body {
+        @apply bg-brand-cream text-brand-brown font-body antialiased;
+        background-image: radial-gradient(#3d2b1f11 1px, transparent 0);
+        background-size: 40px 40px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        @apply font-display;
+    }
+}
+
+@layer utilities {
+    /* Nasconde la scrollbar per Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Nasconde la scrollbar per IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
