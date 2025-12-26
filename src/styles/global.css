@@ -1,59 +1,83 @@
 @import "tailwindcss";
 
 @theme {
-    /* Tavolozza colori La Fratina */
+    /* Tavolozza Colori esatta dai file caricati */
     --color-brand-orange: #FF6B35;
     --color-brand-green: #00A878;
     --color-brand-cream: #FDFBF7;
     --color-brand-yellow: #fbc101;
     --color-brand-brown: #1A1A1A;
     --color-brand-mustard: #FFD23F;
+    --color-brand-sage: #B8E986;
     --color-brand-coral: #FF5A5F;
     --color-brand-sky: #4ECDC4;
 
-    /* Font dal file originale */
+    /* Font originali */
     --font-display: "Playfair Display", serif;
     --font-body: "Space Mono", monospace;
 
-    /* Ombre Hard-Edge tipiche del sito caricato */
+    /* Shadow Neo-Brutalist (Ombre dure) */
     --shadow-retro: 8px 8px 0px 0px var(--color-brand-brown);
     --shadow-retro-hover: 12px 12px 0px 0px var(--color-brand-orange);
     --shadow-retro-green: 8px 8px 0px 0px rgba(0, 168, 120, 0.3);
 }
 
 @layer base {
-    /* Importazione Font per Astro */
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&display=swap');
+    /* Caricamento Font Google */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
 
     body {
         @apply bg-brand-cream text-brand-brown font-body antialiased min-h-screen;
-        /* Background pattern puntinato vintage */
-        background-image: radial-gradient(var(--color-brand-brown) 0.5px, transparent 0);
-        background-size: 30px 30px;
+        /* Pattern di sfondo radiale come nel file originale */
+        background-image: 
+            radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(0, 168, 120, 0.08) 0%, transparent 50%);
+        background-attachment: fixed;
     }
 
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
         @apply font-display tracking-tight;
     }
 }
 
 @layer components {
-    /* Classi riutilizzabili nei tuoi componenti Astro (.astro) */
-    
+    /* Classi riutilizzabili per i tuoi componenti .astro */
+
+    /* Header in stile Vintage Yellow */
+    .header-vintage {
+        @apply fixed top-0 left-0 right-0 z-50 px-6 py-4 border-b-4 border-brand-orange shadow-lg;
+        background: linear-gradient(180deg, rgba(251, 193, 1, 0.98) 0%, rgba(251, 193, 1, 0.95) 100%);
+        backdrop-filter: blur(10px);
+    }
+
+    /* Nav link con hover arancio */
     .nav-link {
-        @apply font-body text-sm uppercase tracking-widest text-brand-green py-2 border-b-2 border-transparent transition-all hover:text-brand-orange hover:border-brand-orange;
+        @apply text-brand-green font-bold uppercase tracking-widest text-sm transition-all duration-300 border-b-2 border-transparent hover:text-brand-orange hover:border-brand-orange;
     }
 
+    /* Card Prodotto Neo-Brutalist */
     .card-vintage {
-        @apply bg-white border-4 border-brand-brown shadow-retro transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-retro-hover overflow-hidden;
+        @apply bg-white border-3 border-brand-brown shadow-retro transition-all duration-400 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-retro-hover overflow-hidden;
     }
 
+    /* Badge Anno */
     .badge-year {
-        @apply inline-block bg-brand-orange text-white px-4 py-1 text-sm font-bold border-2 border-brand-brown shadow-[3px_3px_0px_0px_#1A1A1A];
+        @apply inline-block bg-brand-orange text-white px-4 py-1 font-bold border-2 border-brand-brown shadow-[3px_3px_0px_0px_#1A1A1A];
+    }
+
+    /* Card Eventi con bordo laterale spesso */
+    .event-card {
+        @apply bg-white border-3 border-brand-brown border-l-[10px] border-l-brand-orange p-6 shadow-retro transition-all hover:shadow-retro-green;
     }
 }
 
 @layer utilities {
+    /* Sfumature per le immagini degli oggetti */
+    .bg-vintage-1 { @apply bg-gradient-to-br from-brand-coral to-brand-mustard; }
+    .bg-vintage-2 { @apply bg-gradient-to-br from-brand-sky to-brand-sage; }
+    .bg-vintage-3 { @apply bg-gradient-to-br from-brand-mustard to-brand-orange; }
+
+    /* Nasconde scrollbar */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
