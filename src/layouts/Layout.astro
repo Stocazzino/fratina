@@ -7,85 +7,69 @@ const baseUrl = import.meta.env.BASE_URL;
 <html lang="it">
     <head>
         <meta charset="utf-8" />
-        <title>{titolo} | Fratina Vintage Restauro & Vendita</title>
-        <meta name="description" content="Descrizione del sito Fratina" />
+        <title>{titolo} | La Fratina Vintage | Restauro & Vendita</title>
+        <meta name="description" content="La Fratina Vintage - Restauro e vendita mobili e oggetti vintage" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="keywords" content="Frattina, sito, prodotti, catalogo" />
         <meta name="robots" content="index, follow" />
-        <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="apple-touch-icon.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="favicon-32x32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="favicon-16x16.png"
-        />
-        <link rel="manifest" href="site.webmanifest" />
+        
+        <link rel="apple-touch-icon" sizes="180x180" href={`${baseUrl}apple-touch-icon.png`} />
+        <link rel="icon" type="image/png" sizes="32x32" href={`${baseUrl}favicon-32x32.png`} />
+        <link rel="icon" type="image/png" sizes="16x16" href={`${baseUrl}favicon-16x16.png`} />
+        <link rel="manifest" href={`${baseUrl}site.webmanifest`} />
 
         <link
-            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap"
             rel="stylesheet"
         />
     </head>
-    <body>
-        <header
-            class="sticky top-0 z-50 bg-brand-yellow border-b-4 border-brand-brown p-4 shadow-retro mb-10"
-        >
+    <body class="bg-brand-green font-body text-brand-brown">
+        <header class="header-vintage">
             <nav class="max-w-7xl mx-auto flex justify-between items-center">
-                <a
-                    href={baseUrl}
-                    class="text-5xl font-display tracking-tighter hover:scale-105 transition-transform"
-                >
-                    FRATINA
+                <a href={baseUrl} class="flex flex-col no-underline group">
+                    <span class="text-2xl md:text-4xl font-display font-black text-brand-green leading-none tracking-tighter group-hover:scale-[1.01] transition-transform uppercase">
+                        LA FRATINA VINTAGE
+                    </span>
+                    <span class="text-[0.65rem] md:text-xs text-brand-orange uppercase tracking-[0.2em] font-bold">
+                        Alessandro & Luigina
+                    </span>
                 </a>
-                <div
-                    class="flex items-center gap-6 font-bold uppercase text-sm"
-                >
-                    <a href={`${baseUrl}`} class="hover:underline decoration-4">
-                        Home
-                    </a>
-                    <a
-                        href={`${baseUrl}catalogo`}
-                        class="hover:underline decoration-4"
-                    >
-                        Catalogo
-                    </a>
-                    <a
-                        href={`${baseUrl}#eventi`}
-                        class="hover:underline decoration-4"
-                    >
-                        Eventi
-                    </a>
-                    <a
-                        href={`${baseUrl}#contatti`}
-                        class="bg-brand-brown text-white px-4 py-2 hover:bg-brand-orange transition-colors"
+
+                <div class="hidden md:flex items-center gap-8 font-bold">
+                    <a href={baseUrl} class="nav-link">Home</a>
+                    <a href={`${baseUrl}catalogo`} class="nav-link">Catalogo</a>
+                    <a href={`${baseUrl}#eventi`} class="nav-link">Eventi</a>
+                    <a 
+                        href={`${baseUrl}#contatti`} 
+                        class="bg-brand-brown text-white px-5 py-2 text-sm uppercase tracking-widest hover:bg-brand-orange transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none"
                     >
                         Contattaci
                     </a>
                 </div>
+                
+                <button class="md:hidden text-2xl text-brand-green">☰</button>
             </nav>
         </header>
 
-        <main class="max-w-7xl mx-auto px-4 pb-20">
+        <div class="h-32 md:h-40"></div>
+
+        <main class="max-w-7xl mx-auto px-6 pb-20">
             <slot />
         </main>
 
-        <footer class="z-50 bg-brand-yellow p-4">
-            <nav class="max-w-7xl mx-auto flex justify-between items-center">
-                <p>
-                    &copy; 2025 La Fratina Vintage | Alessandro & Luigina |
-                    Tutti i diritti riservati
-                </p>
-            </nav>
+        <footer class="bg-brand-brown text-brand-cream py-12 px-6 mt-20">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <h2 class="font-display text-3xl text-brand-yellow mb-2 font-black italic">La Fratina</h2>
+                    <p class="text-xs opacity-60 font-mono tracking-widest uppercase">
+                        &copy; 2025 Alessandro & Luigina | Tutti i diritti riservati
+                    </p>
+                </div>
+                
+                <div class="flex gap-6 font-bold text-sm uppercase tracking-widest">
+                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow transition-colors">Instagram</a>
+                    <a href="#" class="text-brand-yellow hover:text-brand-orange border-b border-brand-yellow transition-colors">Facebook</a>
+                </div>
+            </div>
         </footer>
     </body>
 </html>
