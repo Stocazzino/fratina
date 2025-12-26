@@ -1,42 +1,59 @@
 @import "tailwindcss";
-@import "tailwindcss";
 
 @theme {
-    --color-brand-orange: #e67e22;
-    --color-brand-brown: #3d2b1f;
-    --color-brand-cream: #fdf6e3;
-    --color-brand-yellow: #f4a127;
-    --color-brand-green: #2d5a27;
+    /* Tavolozza colori La Fratina */
+    --color-brand-orange: #FF6B35;
+    --color-brand-green: #00A878;
+    --color-brand-cream: #FDFBF7;
+    --color-brand-yellow: #fbc101;
+    --color-brand-brown: #1A1A1A;
+    --color-brand-mustard: #FFD23F;
+    --color-brand-coral: #FF5A5F;
+    --color-brand-sky: #4ECDC4;
 
-    --font-display: "DM Serif Display", serif;
-    --font-body: "Space Grotesk", sans-serif;
+    /* Font dal file originale */
+    --font-display: "Playfair Display", serif;
+    --font-body: "Space Mono", monospace;
 
+    /* Ombre Hard-Edge tipiche del sito caricato */
     --shadow-retro: 8px 8px 0px 0px var(--color-brand-brown);
     --shadow-retro-hover: 12px 12px 0px 0px var(--color-brand-orange);
+    --shadow-retro-green: 8px 8px 0px 0px rgba(0, 168, 120, 0.3);
 }
 
 @layer base {
+    /* Importazione Font per Astro */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Space+Mono:wght@400;700&display=swap');
+
     body {
-        @apply bg-brand-cream text-brand-brown font-body antialiased;
-        background-image: radial-gradient(#3d2b1f11 1px, transparent 0);
-        background-size: 40px 40px;
+        @apply bg-brand-cream text-brand-brown font-body antialiased min-h-screen;
+        /* Background pattern puntinato vintage */
+        background-image: radial-gradient(var(--color-brand-brown) 0.5px, transparent 0);
+        background-size: 30px 30px;
     }
 
-    h1,
-    h2,
-    h3 {
-        @apply font-display;
+    h1, h2, h3 {
+        @apply font-display tracking-tight;
+    }
+}
+
+@layer components {
+    /* Classi riutilizzabili nei tuoi componenti Astro (.astro) */
+    
+    .nav-link {
+        @apply font-body text-sm uppercase tracking-widest text-brand-green py-2 border-b-2 border-transparent transition-all hover:text-brand-orange hover:border-brand-orange;
+    }
+
+    .card-vintage {
+        @apply bg-white border-4 border-brand-brown shadow-retro transition-all duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-retro-hover overflow-hidden;
+    }
+
+    .badge-year {
+        @apply inline-block bg-brand-orange text-white px-4 py-1 text-sm font-bold border-2 border-brand-brown shadow-[3px_3px_0px_0px_#1A1A1A];
     }
 }
 
 @layer utilities {
-    /* Nasconde la scrollbar per Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    /* Nasconde la scrollbar per IE, Edge and Firefox */
-    .no-scrollbar {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
