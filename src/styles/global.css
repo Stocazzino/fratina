@@ -23,12 +23,13 @@
 }
 
 @layer base {
-    /* Caricamento Font Google */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
 
     body {
-        @apply bg-brand-cream text-brand-brown font-body antialiased min-h-screen;
-        /* Pattern di sfondo radiale come nel file originale */
+        /* Aggiunto font-normal e forzato il peso 400 */
+        @apply bg-brand-cream text-brand-brown font-body font-normal antialiased min-h-screen;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         background-image: 
             radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.08) 0%, transparent 50%),
             radial-gradient(circle at 80% 20%, rgba(0, 168, 120, 0.08) 0%, transparent 50%);
@@ -41,8 +42,6 @@
 }
 
 @layer components {
-    /* Classi riutilizzabili per i tuoi componenti .astro */
-
     /* Header in stile Vintage Yellow */
     .header-vintage {
         @apply fixed top-0 left-0 right-0 z-50 px-6 py-4 border-b-4 border-brand-orange shadow-lg;
@@ -50,9 +49,11 @@
         backdrop-filter: blur(10px);
     }
 
-    /* Nav link con hover arancio */
+    /* Nav link CORRETTO: rimosso font-bold, aggiunta spaziatura lettere 0.1em */
     .nav-link {
-        @apply text-brand-green font-bold uppercase tracking-widest text-sm transition-all duration-300 border-b-2 border-transparent hover:text-brand-orange hover:border-brand-orange;
+        @apply text-brand-green font-normal uppercase transition-all duration-300 border-b-2 border-transparent hover:text-brand-orange hover:border-brand-orange;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
     }
 
     /* Card Prodotto Neo-Brutalist */
@@ -69,15 +70,4 @@
     .event-card {
         @apply bg-white border-3 border-brand-brown border-l-[10px] border-l-brand-orange p-6 shadow-retro transition-all hover:shadow-retro-green;
     }
-}
-
-@layer utilities {
-    /* Sfumature per le immagini degli oggetti */
-    .bg-vintage-1 { @apply bg-gradient-to-br from-brand-coral to-brand-mustard; }
-    .bg-vintage-2 { @apply bg-gradient-to-br from-brand-sky to-brand-sage; }
-    .bg-vintage-3 { @apply bg-gradient-to-br from-brand-mustard to-brand-orange; }
-
-    /* Nasconde scrollbar */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
