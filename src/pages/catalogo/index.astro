@@ -17,23 +17,20 @@ const padri = Object.keys(strutturaCategorie).sort();
 ---
 
 <Layout titolo="Collezione">
-    <section class="py-16 text-center">
-        <h1 class="font-display font-black text-5xl md:text-7xl text-brand-yellow relative inline-block mb-8">
-    Collezione
-    <span class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-orange"></span>
-</h1>
-        <p class="text-lg md:text-xl max-w-2xl mx-auto text-white/90 font-body italic mt-4">
-            Oggetti selezionati con cura, restaurati per durare nel tempo.
-        </p>
+    <section class="py-16 md:py-24 text-center">
+        <h1 class="font-display font-black text-5xl md:text-8xl text-brand-yellow relative inline-block">
+            Collezione
+            <span class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-2.5 bg-brand-orange"></span>
+        </h1>
     </section>
 
     <section id="filterSection" class="sticky py-6 top-[100px] z-30 mb-10 bg-brand-green/95 backdrop-blur-sm">
-        <div class="flex flex-col md:flex-row gap-4 items-stretch">
+        <div class="flex flex-col md:flex-row gap-4 items-stretch px-4 md:px-0">
             <div class="grow">
                 <input 
                     type="text" 
                     id="searchBar" 
-                    placeholder="Cerca un mobile, una lampada..." 
+                    placeholder="Cerca un pezzo unico..." 
                     class="w-full h-full p-4 border-2 border-brand-brown shadow-[6px_6px_0_rgba(255,107,53,0.3)] focus:outline-none bg-white font-body" 
                 />
             </div>
@@ -44,7 +41,7 @@ const padri = Object.keys(strutturaCategorie).sort();
                     <span class="ml-2">▼</span>
                 </button>
                 
-                <div id="mainDropdown" class="absolute top-[calc(100%+4px)] left-0 w-full bg-white border-2 border-brand-brown hidden z-50 shadow-xl max-h-[400px] overflow-y-auto no-scrollbar">
+                <div id="mainDropdown" class="absolute top-[calc(100%+4px)] left-0 w-full bg-white border-2 border-brand-brown hidden z-50 shadow-xl">
                     <button class="w-full text-left p-3 hover:bg-brand-orange hover:text-white border-b border-gray-100 uppercase text-xs font-bold filter-btn" data-category="all">
                         Mostra Tutto
                     </button>
@@ -53,13 +50,13 @@ const padri = Object.keys(strutturaCategorie).sort();
                         <div class="relative sub-group-container">
                             <button class="w-full text-left p-3 border-b border-gray-100 flex justify-between items-center hover:bg-brand-orange hover:text-white uppercase text-xs font-bold filter-btn" data-category={padre}>
                                 {padre} 
-                                {strutturaCategorie[padre].size > 0 && <span class="text-[10px] transform transition-transform arrow">▶</span>}
+                                {strutturaCategorie[padre].size > 0 && <span class="text-[10px] arrow transition-transform duration-200">▶</span>}
                             </button>
                             
                             {strutturaCategorie[padre].size > 0 && (
-                                <div class="hidden bg-stone-50 border-b border-gray-200 sub-dropdown">
+                                <div class="hidden absolute top-[-2px] left-[calc(100%+2px)] w-full bg-white border-2 border-brand-brown shadow-xl z-50 sub-dropdown">
                                     {[...strutturaCategorie[padre]].sort().map(figlio => (
-                                        <button class="w-full text-left p-3 pl-8 hover:bg-brand-yellow uppercase text-[10px] font-bold filter-btn" data-category={`${padre}/${figlio}`}>
+                                        <button class="w-full text-left p-3 hover:bg-brand-yellow border-b border-gray-50 last:border-0 uppercase text-[10px] font-bold filter-btn" data-category={`${padre}/${figlio}`}>
                                             {figlio}
                                         </button>
                                     ))}
@@ -80,22 +77,18 @@ const padri = Object.keys(strutturaCategorie).sort();
     <div id="productGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-20">
         {prodotti.map((p) => (
             <div class="product-card" data-nome={p.data.nome.toLowerCase()} data-categoria={p.data.categoria} data-disponibile={p.data.disponibile.toString()}>
-                <a href={`${baseUrl}catalogo/${p.id}`} class="block bg-white border-3 border-brand-brown shadow-[8px_8px_0_rgba(0,168,120,0.3)] hover:shadow-[12px_12px_0_rgba(255,107,53,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full group">
-                    <div class="aspect-square border-b-3 border-brand-brown overflow-hidden relative">
-                        <img 
-                            src={p.data.imageUrls[0]} 
-                            alt={p.data.nome} 
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                        />
+                <a href={`${baseUrl}catalogo/${p.id}`} class="block bg-white border-2 border-brand-brown shadow-[8px_8px_0_rgba(0,168,120,0.3)] hover:shadow-[12px_12px_0_rgba(255,107,53,0.4)] hover:-translate-y-1 transition-all duration-300 overflow-hidden h-full group">
+                    <div class="aspect-square border-b-2 border-brand-brown overflow-hidden relative">
+                        <img src={p.data.imageUrls[0]} alt={p.data.nome} class="w-full h-full object-cover" />
                         {!p.data.disponibile && (
-                            <div class="absolute inset-0 bg-white/40 flex items-center justify-center backdrop-blur-[2px] z-10">
-                                <span class="bg-brand-brown text-white px-4 py-2 font-display text-2xl rotate-[-5deg] shadow-lg border-2 border-white uppercase">Venduto</span>
+                            <div class="absolute inset-0 bg-white/40 flex items-center justify-center backdrop-blur-[2px]">
+                                <span class="bg-brand-brown text-white px-4 py-2 font-display text-2xl rotate-[-5deg] border-2 border-white uppercase shadow-md">Venduto</span>
                             </div>
                         )}
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-display text-brand-green mb-1 leading-tight group-hover:text-brand-orange transition-colors">{p.data.nome}</h3>
-                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mb-4">
+                    <div class="p-6 text-center">
+                        <h3 class="text-2xl font-display text-brand-green mb-1 group-hover:text-brand-orange transition-colors">{p.data.nome}</h3>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-4">
                             {p.data.categoria.replace('/', ' / ')}
                         </p>
                         <div class="flex justify-between items-center border-t border-gray-100 pt-4 font-body">
@@ -111,15 +104,32 @@ const padri = Object.keys(strutturaCategorie).sort();
 
 <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     
-    .sub-group-container:hover .sub-dropdown { display: block !important; }
-    .sub-group-container:hover .arrow { transform: rotate(90deg); }
+    .sub-group-container:hover .sub-dropdown { 
+        display: block !important;
+        animation: flyoutShow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .sub-group-container:hover .arrow { transform: translateX(4px); }
 
-    #filterSection { transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out; }
-    .filters-hidden { transform: translateY(-160%); opacity: 0; pointer-events: none; }
-    
-    .border-3 { border-width: 3px; }
+    @keyframes flyoutShow {
+        from { opacity: 0; transform: translateX(10px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+
+    #filterSection { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; }
+    .filters-hidden { transform: translateY(-170%); opacity: 0; pointer-events: none; }
+
+    @media (max-width: 768px) {
+        .sub-dropdown {
+            position: static !important;
+            border-left: 6px solid #FF6B35 !important;
+            border-top: 0 !important;
+            border-right: 0 !important;
+            box-shadow: none !important;
+            animation: none !important;
+        }
+    }
 </style>
 
 <script>
@@ -136,26 +146,21 @@ const padri = Object.keys(strutturaCategorie).sort();
     let activeCategory = "all";
     let lastScrollY = window.scrollY;
 
-    // 1. SCROLL HIDE
     window.addEventListener("scroll", () => {
         const currentScrollY = window.scrollY;
-        if (filterSection) {
-            if (currentScrollY > lastScrollY && currentScrollY > 400) {
-                filterSection.classList.add("filters-hidden");
-                mainDropdown?.classList.add("hidden");
-            } else {
-                filterSection.classList.remove("filters-hidden");
-            }
+        if (filterSection && currentScrollY > lastScrollY && currentScrollY > 400) {
+            filterSection.classList.add("filters-hidden");
+            mainDropdown?.classList.add("hidden");
+        } else {
+            filterSection?.classList.remove("filters-hidden");
         }
         lastScrollY = currentScrollY;
     });
 
-    // 2. TOGGLE MENU
     categoryToggle?.addEventListener("click", () => {
         mainDropdown?.classList.toggle("hidden");
     });
 
-    // 3. SELEZIONE CATEGORIA
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const cat = btn.getAttribute('data-category') || "all";
@@ -168,14 +173,10 @@ const padri = Object.keys(strutturaCategorie).sort();
         });
     });
 
-    // 4. CHIUDI FUORI
     document.addEventListener("click", (e) => {
-        if (!categoryMenu?.contains(e.target as Node)) {
-            mainDropdown?.classList.add("hidden");
-        }
+        if (!categoryMenu?.contains(e.target as Node)) mainDropdown?.classList.add("hidden");
     });
 
-    // 5. FILTRAGGIO
     function updateFilter() {
         const searchTerm = searchBar.value.toLowerCase();
         const onlyAvailable = availableOnly.checked;
