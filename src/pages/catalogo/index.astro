@@ -2,31 +2,41 @@
 import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 
+// 1. Caricamento dati dai file .json
 const prodotti = await getCollection("catalogo");
 const baseUrl = import.meta.env.BASE_URL;
 
-// LOGICA CATEGORIE
+// 2. Logica Categorie Padre/Figlio
 const strutturaCategorie = prodotti.reduce((acc, p) => {
     const catFull = p.data.categoria || "Altro";
     const [padre, figlio] = catFull.split('/');
     if (!acc[padre]) acc[padre] = new Set();
     if (figlio) acc[padre].add(figlio);
     return acc;
-}, {});
+}, { });
 
 const padri = Object.keys(strutturaCategorie).sort();
 ---
 
-<Layout titolo="Il Nostro Catalogo">
+<Layout titolo="La Nostra Collezione">
     <section class="py-12">
-        <h1 class="text-6xl font-display mb-4 text-brand-orange italic">Il Catalogo</h1>
-        <p class="text-xl max-w-2xl text-brand-yellow font-body">Oggetti selezionati con cura.</p>
+        <h1 class="text-6xl md:text-8xl font-display text-brand-orange leading-none tracking-tighter capitalize">
+            La Nostra Collezione
+        </h1>
+        <p class="text-xl max-w-2xl text-brand-yellow font-body mt-6 italic">
+            Oggetti selezionati con cura, pronti a vivere una nuova storia.
+        </p>
     </section>
 
-    <section class="sticky py-8 top-16 z-30 mb-10 bg-brand-green/95 backdrop-blur-sm">
+    <section id="filterSection" class="sticky py-6 top-[100px] z-30 mb-10 bg-brand-green/95 backdrop-blur-sm">
         <div class="flex flex-col md:flex-row gap-4 items-stretch">
             <div class="grow">
-                <input type="text" id="searchBar" placeholder="Cerca un pezzo unico..." class="w-full h-full p-4 border-4 border-brand-brown shadow-retro focus:outline-none bg-white font-body" />
+                <input 
+                    type="text" 
+                    id="searchBar" 
+                    placeholder="Cerca un mobile, una lampada..." 
+                    class="w-full h-full p-4 border-4 border-brand-brown shadow-retro focus:outline-none bg-white font-body" 
+                />
             </div>
 
             <div class="relative min-w-[280px]" id="categoryMenu">
@@ -67,12 +77,18 @@ const padri = Object.keys(strutturaCategorie).sort();
         {prodotti.map((p) => (
             <div class="product-card" data-nome={p.data.nome.toLowerCase()} data-categoria={p.data.categoria}>
                 <a href={`${baseUrl}catalogo/${p.id}`} class="block bg-white border-4 border-brand-brown shadow-retro hover:shadow-retro-hover transition-all overflow-hidden h-full group">
-                    <div class="aspect-square border-b-4 border-brand-brown overflow-hidden relative">
-                        <img src={p.data.imageUrls[0]} alt={p.data.nome} class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                    <div class="aspect-square border-b-4 border-brand-brown overflow-hidden relative bg-brand-yellow/5">
+                        <img 
+                            src={p.data.imageUrls[0]} 
+                            alt={p.data.nome} 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        />
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-display mb-1 leading-tight">{p.data.nome}</h3>
-                        <p class="text-[10px] font-bold text-brand-green uppercase tracking-[0.2em] mb-4">{p.data.categoria.replace('/', ' / ')}</p>
+                        <p class="text-[10px] font-bold text-brand-green uppercase tracking-[0.2em] mb-4">
+                            {p.data.categoria.replace('/', ' / ')}
+                        </p>
                         <div class="flex justify-between items-center border-t-2 border-brand-brown pt-4 font-body">
                             <span class="text-xs bg-brand-brown text-white px-2 py-1">{p.data.anno}</span>
                             <span class="text-xl font-bold text-brand-orange">{p.data.prezzo} {p.data.valuta}</span>
@@ -85,12 +101,26 @@ const padri = Object.keys(strutturaCategorie).sort();
 </Layout>
 
 <style>
+    /* Utility per nascondere scrollbar */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    
     .rotate-90 { transform: rotate(90deg); }
+
+    /* Animazione sezione filtri */
+    #filterSection {
+        transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .filters-hidden {
+        transform: translateY(-160%);
+        opacity: 0;
+        pointer-events: none;
+    }
 </style>
 
 <script>
+    const filterSection = document.getElementById("filterSection");
     const categoryToggle = document.getElementById("categoryToggle");
     const mainDropdown = document.getElementById("mainDropdown");
     const categoryMenu = document.getElementById("categoryMenu");
@@ -101,13 +131,28 @@ const padri = Object.keys(strutturaCategorie).sort();
     const cards = document.querySelectorAll(".product-card");
 
     let activeCategory = "all";
+    let lastScrollY = window.scrollY;
 
-    // 1. Apri/Chiudi menu principale
+    // 1. LOGICA SCROLL (Nasconde la barra dei filtri)
+    window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+        if (filterSection) {
+            if (currentScrollY > lastScrollY && currentScrollY > 400) {
+                filterSection.classList.add("filters-hidden");
+                mainDropdown?.classList.add("hidden"); // Chiude menu se aperto
+            } else {
+                filterSection.classList.remove("filters-hidden");
+            }
+        }
+        lastScrollY = currentScrollY;
+    });
+
+    // 2. APERTURA MENU CATEGORIE
     categoryToggle?.addEventListener("click", () => {
         mainDropdown?.classList.toggle("hidden");
     });
 
-    // 2. Apri/Chiudi sottocategorie
+    // 3. GESTIONE SOTTOCATEGORIE (Click su Padre)
     parentToggles.forEach(toggle => {
         toggle.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -123,7 +168,7 @@ const padri = Object.keys(strutturaCategorie).sort();
         });
     });
 
-    // 3. Selezione categoria e chiusura
+    // 4. SELEZIONE CATEGORIA FINALE
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             activeCategory = btn.getAttribute('data-category') || "all";
@@ -133,17 +178,16 @@ const padri = Object.keys(strutturaCategorie).sort();
         });
     });
 
-    // 4. Chiudi se clicchi fuori
+    // 5. CHIUSURA MENU CLICCANDO FUORI
     document.addEventListener("click", (e) => {
         if (!categoryMenu?.contains(e.target as Node)) {
             mainDropdown?.classList.add("hidden");
         }
     });
 
-    // 5. Logica Filtro Semplificata
+    // 6. FUNZIONE FILTRAGGIO
     function updateFilter() {
         const searchTerm = searchBar.value.toLowerCase();
-
         cards.forEach((card) => {
             const element = card as HTMLElement;
             const nome = element.dataset.nome || "";
