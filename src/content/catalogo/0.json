@@ -1,14 +1,14 @@
 {
-  "nome": "Macchina Fotografica a Pellicola 35mm",
-  "descrizione": "Una splendida fotocamera vintage degli anni '70, perfettamente conservata. Ideale per amatori della fotografia analogica.",
-  "prezzo": 125.5,
-  "valuta": "€",
+  "nome": "Universale Joe Colombo",
+  "descrizione": "Coppia di sedie 'Universale' di Joe Colombo per Kartell, mod. 4867 verde.",
+  "prezzo": 0,
+  "valuta": "ND",
   "imageUrls": [
-    "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000"
+    "https://photos.fife.usercontent.google.com/pw/AP1GczNqbOgEngMl8nd21FmVnLWV6dcNLgP0vZ4cD3YA7MKf9pFnydfLPH7m=w449-h599-s-no-gm?authuser=2", "https://photos.fife.usercontent.google.com/pw/AP1GczMrZyUQgNL7w43c9eMhbdVvz2nHVMpz7UHfnkaO_XM89m70CvwK2P4v=w449-h599-s-no-gm?authuser=2", "https://photos.fife.usercontent.google.com/pw/AP1GczMwNZsHZoa4fMutxXNgJvyxOQsSJvY970gEm-fRC6UTkf9xZS9wThkc=w449-h599-s-no-gm?authuser=2","https://photos.fife.usercontent.google.com/pw/AP1GczPOa2MZ1eOJhhEDwVaQZNN-VxKaQvz9GfE5QmiF1CZmKVBHa6Qoh1qQ=w449-h599-s-no-gm?authuser=2","https://photos.fife.usercontent.google.com/pw/AP1GczOKBUg1X4_kaIraJtE8dlN1o0cDhN_oZQezGtbwSatOPc8wIinjO6ai=w449-h599-s-no-gm?authuser=2"
   ],
-  "categoria": "Fotografia/casseruola",
+  "categoria": "Sedute","Kartell"
   "stato": "Ottimo",
   "dimensioni": "15x10x8 cm",
-  "anno": 1974,
+  "anno": 1965,
   "disponibile": true
 }
